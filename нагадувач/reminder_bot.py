@@ -12,7 +12,7 @@ from telegram.ext import (
 
 import os
 
-TOKEN = os.getenv("8649152490:AAE0RZk6FcGybUbUrrpS7C-iby-QXQwh9Gc")
+TOKEN = os.getenv(8649152490:AAFnadOsI-VnOL9r7WKIhVj4ONyM4DJqa9A)
 
 
 reminders = {}
