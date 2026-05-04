@@ -12,7 +12,7 @@ from telegram.ext import (
 
 import os
 
-TOKEN = os.getenv(8649152490:AAFnadOsI-VnOL9r7WKIhVj4ONyM4DJqa9A)
+TOKEN = os.getenv(8649152490:AAGWDo0NgaHURljT5ANotuhQtX6VnsUoFxE)
 
 
 reminders = {}
@@ -155,6 +155,18 @@ async def handle(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat_id = update.effective_chat.id
     user_id = update.effective_user.id
 
+    if not update.message or not update.message.text:
+            return
+
+    text = update.message.text.lower()
+
+    if re.fullmatch(r"дякую+[\s!;]*", text):
+           await update.message.reply_text(
+    """На здоров'я!
+Вітаю! Ви знайшли секретну відповідь бота!
+Винагорода: повідомлення від автора!
+"нуууу ти молодець вітаю" """
+)
     reminder_id = str(uuid.uuid4())[:8]
 
     # 1️⃣ через пів години
