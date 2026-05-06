@@ -147,7 +147,17 @@ async def list_reminders(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(text)
 
+def format_time(seconds):
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
 
+    if hours > 0 and minutes > 0:
+        return f"{hours} год {minutes} хв"
+    elif hours > 0:
+        return f"{hours} год"
+    else:
+        return f"{minutes} хв"
+    
 # ------------------ 🧠 HANDLE ------------------
 
 async def handle(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -243,10 +253,9 @@ async def handle(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
         reminders[reminder_id] = {"id": reminder_id, "text": task, "user_id": user_id}
 
-        await update.message.reply_text(f"⏳ Нагадаю через {seconds} сек")
-        return
-
-
+        await update.message.reply_text(f"⏳ Нагадаю через {format_time(seconds)}")
+        return 
+    
 # ------------------ 🚀 ЗАПУСК ------------------
 
 app = ApplicationBuilder().token(TOKEN).build()
